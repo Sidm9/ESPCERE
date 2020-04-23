@@ -1,4 +1,5 @@
 <template>
+
   <v-card class="mx-auto mt-4 md-4 mr-4 ml-4 " max-width="450">
     <v-img
       src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
@@ -11,7 +12,7 @@
 
       </div> -->
     </v-card-title>
-    <v-row class="px-4 grey--text" align="center">
+    <v-row class="px-4 black--text" align="center">
       <v-avatar size="20" class="mr-2 ml-3">
         <v-img
           src="https://image.shutterstock.com/image-illustration/bitcoin-logo-png-vector-transparent-260nw-1654430290.jpg"
@@ -19,41 +20,87 @@
         ></v-img>
       </v-avatar>
 
-      <div class="title">4500</div >
+      <div class="title">4500</div>
+      <v-spacer />
+
+      <div class="title">Item Count</div>
+      <div v-if="a > 0" class="title mx-5">
+        {{ a }}
+        <v-icon @click="removeFromCart">
+          mdi-minus
+        </v-icon>
+      </div>
+      <div v-else>
+        <span class="title mx-5"> 0 </span>
+      </div>
     </v-row>
-
-    <v-divider class="mt-6 mx-9"></v-divider>
-
+    <v-divider class="mt-1 mx-1"></v-divider>
     <v-card-text>
-      <v-chip class="mr-2" @click="lights">
-        <v-icon left>mdi-alarm-check</v-icon>
-        Buy
+      <v-btn class="ma-2" rounded color="indigo" dark @click="addToCart">
+        Add To Cart</v-btn
+      >
+      <v-chip color="success" class="mr-2" @click="overlay = !overlay">
+        <v-icon left>mdi-information-outline</v-icon>
+        Description
       </v-chip>
-      <v-chip class="mr-2" @click="alarm">
-        <v-icon left>mdi-alarm-check</v-icon>
-        Set alarm
-      </v-chip>
-      <v-chip @click="blinds">
-        <v-icon left>mdi-blinds</v-icon>
-        Close blinds
-      </v-chip>
+      <v-dialog
+        v-model="overlay"
+        max-width="500px"
+      >
+        <v-card>
+          <v-card-title>
+            <span>Dialog 3</span>
+            <v-spacer></v-spacer>
+            <v-menu
+              bottom
+              left
+            >
+            </v-menu>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn
+              color="primary"
+              text
+              @click="overlay = false"
+            >
+              Close
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-card-text>
   </v-card>
 </template>
-
 <script>
+// import Description from "./Description";
 export default {
+  components: {
+    // Description,
+  },
+  data: function() {
+    return {
+      a: 0,
+      minus_display: true,
+      overlay: false,
+    };
+  },
   methods: {
-    alarm() {
-      alert("Turning on alarm...");
+    addToCart: function() {
+      this.a += 1;
+      console.log(this.a);
     },
-    blinds() {
-      alert("Toggling Blinds...");
-    },
-    lights() {
-      alert("Toggling lights...");
+    removeFromCart: function() {
+      this.a -= 1;
+      console.log(this.a);
     },
   },
-  props : ['']
 };
 </script>
+<style>
+body,
+div,
+span,
+a {
+  font-family: "Montserrat", sans-serif;
+}
+</style>

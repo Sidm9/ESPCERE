@@ -75,7 +75,7 @@ export default {
 
 <style >
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-html, body , span{
+html, body , span ,div{
   font-family: 'Montserrat', sans-serif;
 }
 
