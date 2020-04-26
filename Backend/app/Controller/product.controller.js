@@ -39,6 +39,18 @@ exports.create = (req, res) => {
       });
     else res.send(data);
   });
-
-
 };
+
+exports.deleteAll = (req, res) => {
+
+
+  Product.deleteAll((err, data) => {
+    if (err)
+      res.status(500), self({
+        message:
+          err.message || "Some error occurred while creating the Customer."
+      });
+  });
+
+  
+}
