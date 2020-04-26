@@ -2,11 +2,12 @@ const sql = require("./db.js");
 
 // constructor
 const ProductModel = function (Product) {
-    this.id = Product.id;
+    // this.id = Product.id;
     this.name = Product.name;
+    this.price = Product.price,
     this.description = Product.description;
-    this.Image = Product.Image;
-    this.Count = Product.Count;
+    this.image = Product.image;
+    this.count = Product.count;
 };
 
 
@@ -17,22 +18,21 @@ ProductModel.getAll = result => {
             result(null, err);
             return;
         }
-
         console.log("product: ", res);
         result(null, res);
     });
 };
 
 
-ProductModel.create = result => {
+ProductModel.create = ( newProduct, result) => {
     sql.query("INSERT into product SET ? ", newProduct, (err, res) => {
         if (err) {
             console.log("error", err);
             result(err, NULL);
-            return; 
+            return;
         }
-        console.log("ADDED" , {id: res.id, ...newProduct});
-        result(null , {id: res.id, ...newProduct});
+        console.log("ADDED", { id: res.id, ...newProduct });
+        result(null, { id: res.id, ...newProduct });
     });
 };
 
