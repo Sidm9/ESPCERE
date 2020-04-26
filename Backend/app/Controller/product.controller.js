@@ -6,7 +6,7 @@ exports.findAll = (req, res) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving customers."
+          err.message || "Some error occurred while retrieving Product."
       });
     else res.send(data);
   });
@@ -21,7 +21,7 @@ exports.create = (req, res) => {
     });
   }
 
-  // Create a Customer
+  // Create a Product
   const product = new Product({
     name: req.body.name,
     price: req.body.price,
@@ -30,27 +30,44 @@ exports.create = (req, res) => {
     count: req.body.count
   });
 
-  // Save Customer in the database
+  // Save Product in the database
   Product.create(product, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Customer."
+          err.message || "Some error occurred while creating the Product."
       });
     else res.send(data);
   });
 };
 
-exports.deleteAll = (req, res) => {
 
+exports.productOne = (req, res) => {
+
+  Product.findById(req.params.id, (err, data) => {
+    if (err) {
+      if (err.id === "Not Found") {
+        res.status(500).send({
+          message: `Not found Customer with id ${req.params.id}.`
+        });
+      }
+      else {
+        res.status(500).send({
+          message: "Error retrieving Customer with id " + req.params.customerId
+        });
+      }
+    } else res.send(data);
+  });
+};
+
+exports.deleteAll = (req, res) => {
 
   Product.deleteAll((err, data) => {
     if (err)
       res.status(500), self({
         message:
-          err.message || "Some error occurred while creating the Customer."
+          err.message || "Some error occurred while creating the Product."
       });
   });
 
-  
 }
