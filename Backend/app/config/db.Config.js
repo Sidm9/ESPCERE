@@ -3,7 +3,6 @@
 // export const password = 'password';
 // export const database = 'ESPCERE';
 
-
 module.exports = {
     host: "localhost",
     user: "root",
