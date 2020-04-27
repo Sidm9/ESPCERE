@@ -5,7 +5,7 @@ const ProductModel = function (Product) {
     this.id = Product.id;
     this.name = Product.name;
     this.price = Product.price,
-        this.description = Product.description;
+    this.description = Product.description;
     this.image = Product.image;
     this.count = Product.count;
 };
@@ -46,11 +46,28 @@ ProductModel.findById = (id, result) => {
             return;
         }
         if (res.length) {
-            console.log("found customer : ", res[0]);
+            console.log("found Product : ", res[0]);
             result(null, res[0]);
             return;
         }
         result({ id: "Not Found" }, null);
+    });
+};
+
+ProductModel.updateByID = (id, Product, result) => {
+    sql.query(`UPDATE PRODUCT SET COUNT = ? WHERE ID = ?`, [Product.count , id], (err, res) => {
+        if (err) {
+            console.log("error", err);
+            result(null, err);
+            return;
+        }
+        if (res.affectedRows == 0) {
+            // not found Product with the id
+            result({ id: "not_found" }, null);
+            return;
+        }
+        console.log("updated Product: ", { id: id, ...Product });
+        result(null, { id: id, ...Product });
     });
 };
 
@@ -60,7 +77,7 @@ ProductModel.deleteAll = result => {
             console.log("Err", err);
             return;
         }
-        console.log(`DEL ${res.affectedRows} customer`);
+        console.log(`DEL ${res.affectedRows} Product`);
         result(null, res);
         return;
     });

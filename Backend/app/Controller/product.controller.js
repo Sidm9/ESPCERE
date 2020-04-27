@@ -48,12 +48,28 @@ exports.productOne = (req, res) => {
     if (err) {
       if (err.id === "Not Found") {
         res.status(500).send({
-          message: `Not found Customer with id ${req.params.id}.`
+          message: `Not found Product with id ${req.params.id}.`
         });
       }
       else {
         res.status(500).send({
-          message: "Error retrieving Customer with id " + req.params.customerId
+          message: "Error retrieving Product with id " + req.params.id
+        });
+      }
+    } else res.send(data);
+  });
+};
+
+exports.UpdateOne = (req, res) => {
+  Product.updateByID(req.params.id, new Product(req.body), (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Product with id ${req.params.id}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error updating Product with id " + req.params.id
         });
       }
     } else res.send(data);

@@ -3,7 +3,9 @@ module.exports = app => {
   // Retrieve all Product
   app.get("/product", product.findAll);
  // Retrieve one Product
-  app.get("/productOne:id" , product.productOne);
+  app.get("/productOne/:id" , product.productOne);
+  // Update a Product with ID
+  app.put("/product/:id", product.UpdateOne);
    // Create a new Product
    app.post("/create", product.create);
   // Delete all new Product
