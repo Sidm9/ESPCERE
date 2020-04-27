@@ -1,12 +1,9 @@
 <template>
-  <div>
-    <h1>This</h1>
-    <router-view></router-view>
-  </div>
+  <h1>About Pure</h1>
 </template>
 
 <script>
-export default {};
+export default {
+  
+}
 </script>
-
-<style></style>
