@@ -4,29 +4,21 @@
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
           <v-col cols="12" sm="8" md="4">
+            <div class="display-2 text-center mb-12">ADMIN PAGE</div>
             <v-card class="elevation-12">
               <v-toolbar color="primary" dark flat>
-                <v-toolbar-title>Add Product To Database </v-toolbar-title>
+                <v-toolbar-title>Add Product </v-toolbar-title>
                 <v-spacer />
                 <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <v-btn :href="source" icon large target="_blank" v-on="on">
-                      <v-icon>mdi-code-tags</v-icon>
-                    </v-btn>
-                  </template>
                   <span>Source</span>
                 </v-tooltip>
                 <v-tooltip right>
                   <template v-slot:activator="{ on }">
-                    <v-btn
-                      icon
-                      large
-                      href="https://codepen.io/johnjleider/pen/pMvGQO"
-                      target="_blank"
-                      v-on="on"
-                    >
-                      <v-icon>mdi-home-circle</v-icon>
-                    </v-btn>
+                    <router-link to="/test">
+                      <v-btn icon large target="_blank" v-on="on">
+                        <v-icon>mdi-home-circle</v-icon>
+                      </v-btn>
+                    </router-link>
                   </template>
                   <span>Codepen</span>
                 </v-tooltip>
@@ -34,11 +26,19 @@
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    id="Product ID"
-                    label="Name"
+                    id="Product"
+                    label="Product Name"
                     name="login"
                     mdi-icon="home-cicle"
                     type="text"
+                  />
+
+                  <v-text-field
+                    id="Price"
+                    label="Price"
+                    name="password"
+                    v-icon="lock"
+                    type="password"
                   />
 
                   <v-text-field
@@ -48,41 +48,63 @@
                     v-icon="lock"
                     type="password"
                   />
-                  
-                   <v-text-field
-                    id="Count"
-                    label="Count"
-                    name="password" 
-                    v-icon="lock"
-                    type="password"
-                  />
-                  
-                     <v-text-field
-                    id="Count"
-                    label="Count"
-                    name="password"
-                    v-icon="lock"
-                    type="password"
-                  />
+                  <ValidationProvider
+                    v-slot="{ errors }"
+                    name="Name"
+                    rules="required|max:10"
+                  >
+                    <v-text-field
+                      id="Count"
+                      label="Count"
+                      :error-messages="errors"
+                      name="password"
+                      v-icon="lock"
+                      type="password"
+                    />
+                  </ValidationProvider>
 
+                  <v-spacer />
+                  <v-btn color="primary" @click="alert=true">Add To Database </v-btn>
                 </v-form>
               </v-card-text>
-              <v-card-actions>
-                <v-spacer />
-                <v-btn color="primary">Add To Database </v-btn>
-              </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
     </v-content>
+    <v-snackbar
+      v-model = alert 
+      right = "true"
+      color="success"
+      :left="x === 'left'"
+      :timeout="1500" 
+      top = "true"
+      :vertical="mode === 'vertical'"
+    >
+      Added To Database
+    </v-snackbar>
   </v-app>
 </template>
 
 <script>
+// import { extend } from 'vee-validate';
+import { ValidationProvider } from "vee-validate";
 export default {
   props: {
     source: String,
   },
+  components: {
+    ValidationProvider,
+  },
+
+   data () {
+      return {
+        alert: false,
+      }
+    },
+
+  //   extend('positive', value => {
+  //   return value >= 0;
+  // });
 };
 </script>
