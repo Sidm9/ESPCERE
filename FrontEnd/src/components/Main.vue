@@ -36,9 +36,9 @@
 
       <v-spacer />
 
-      <v-btn href="https://github.com/A7AENT/ESPCERE" target="_blank" text>
-        <span class="mr-2" v-bind="value">DEV {{value}} </span>
-        <v-icon>mdi-cart</v-icon>
+      <v-btn target="_blank" text>
+        <span class="mr-2" v-bind="value">DEV {{ value }} </span>
+        <router-link to="/about"> <v-icon>mdi-cart </v-icon> </router-link>
       </v-btn>
     </v-app-bar>
 
@@ -68,18 +68,21 @@ export default {
 
   data: () => ({
     drawer: null,
-    value : 198, 
+    value: 198,
   }),
 };
 </script>
 
-<style >
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-html, body , span ,div{
-  font-family: 'Montserrat', sans-serif;
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+html,
+body,
+span,
+div {
+  font-family: "Montserrat", sans-serif;
 }
 
 #app {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 </style>
