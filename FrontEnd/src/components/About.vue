@@ -14,7 +14,7 @@
                 </v-tooltip>
                 <v-tooltip right>
                   <template v-slot:activator="{ on }">
-                    <router-link to="/test">
+                    <router-link to="/">
                       <v-btn icon large target="_blank" v-on="on">
                         <v-icon>mdi-home-circle</v-icon>
                       </v-btn>
@@ -26,7 +26,7 @@
               <v-card-text>
                 <v-form>
                   <v-text-field
-                    id="Product"
+                    v-model="Product"
                     label="Product Name"
                     name="login"
                     mdi-icon="home-cicle"
@@ -34,19 +34,19 @@
                   />
 
                   <v-text-field
-                    id="Price"
+                    v-model="Price"
                     label="Price"
                     name="password"
                     v-icon="lock"
-                    type="password"
+                    type="text"
                   />
 
                   <v-text-field
-                    id="Description"
+                    v-model="Description"
                     label="Description"
                     name="password"
                     v-icon="lock"
-                    type="password"
+                    type="text"
                   />
                   <ValidationProvider
                     v-slot="{ errors }"
@@ -54,31 +54,33 @@
                     rules="required|max:10"
                   >
                     <v-text-field
-                      id="Count"
+                      v-model="Count"
                       label="Count"
                       :error-messages="errors"
                       name="password"
                       v-icon="lock"
-                      type="password"
+                      type="text"
                     />
                   </ValidationProvider>
-
                   <v-spacer />
-                  <v-btn color="primary" @click="alert=true">Add To Database </v-btn>
+                  <v-btn color="primary" @click="send" class="mt-5"
+                    >Add To Database
+                  </v-btn>
                 </v-form>
               </v-card-text>
             </v-card>
           </v-col>
         </v-row>
+        <!-- <h1>{{ Price }}</h1> -->
       </v-container>
     </v-content>
     <v-snackbar
-      v-model = alert 
-      right = "true"
+      v-model="alert"
+      right="true"
       color="success"
       :left="x === 'left'"
-      :timeout="1500" 
-      top = "true"
+      :timeout="1500"
+      top="true"
       :vertical="mode === 'vertical'"
     >
       Added To Database
@@ -97,11 +99,33 @@ export default {
     ValidationProvider,
   },
 
-   data () {
-      return {
-        alert: false,
-      }
+  data() {
+    return {
+      alert: false,
+      Product: "",
+      Price: null,
+      Description: "",
+      Count: null,
+    };
+  },
+
+  methods: {
+    send: function() {
+      this.$http
+        .post("http://localhost:3000/create", {
+          name: this.Product,
+          price: this.Price,
+          description: this.Description,
+          count: this.Count,
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
+  },
 
   //   extend('positive', value => {
   //   return value >= 0;
