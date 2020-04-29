@@ -7,10 +7,7 @@
     >
     </v-img>
     <v-card-title>
-      <div class="display-1 mb-2">Card Item</div>
-      <!-- <div class="title font-weight-regular grey--text">
-
-      </div> -->
+      <div class="display-1 mb-2">{{ name }}</div>
     </v-card-title>
     <v-row class="px-4 black--text" align="center">
       <v-avatar size="20" class="mr-2 ml-3">
@@ -74,9 +71,27 @@
 <script>
 // import Description from "./Description";
 export default {
-  components: {
-    // Description,
+
+  props : {
+    name : {
+      type: String,
+    },
+    price : {
+      type: String,
+    },
+    description : {
+      type: String,
+    },
+    count : {
+      type: String,
+    },
+    image : {
+      type: String,
+    },
   },
+  // components: {
+  //   // Description,
+  // },
   data: function() {
     return {
       a: 0,
