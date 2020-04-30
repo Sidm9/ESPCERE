@@ -20,7 +20,7 @@ const routes = [
         path: '/test',
         name: "test",
         component: Test,
-    }
+    },
 ]
 const router = new VueRouter({
     mode: "history",

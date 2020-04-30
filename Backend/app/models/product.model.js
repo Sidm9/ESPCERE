@@ -72,7 +72,7 @@ ProductModel.updateByID = (id, Product, result) => {
 };
 
 ProductModel.deleteAll = result => {
-    sql.query("Delete FROM product", (err, res) => {
+    sql.query("TRUNCATE TABLE PRODUCT", (err, res) => {
         if (err) {
             console.log("Err", err);
             return;

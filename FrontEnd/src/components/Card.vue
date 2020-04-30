@@ -1,11 +1,6 @@
 <template>
-
   <v-card class="mx-auto mt-4 md-4 mr-4 ml-4 " max-width="450">
-    <v-img
-      :src= "image"
-      :aspect-ratio="16 / 9"
-    >
-    </v-img>
+    <v-img :src="image" :aspect-ratio="16 / 9"> </v-img>
     <v-card-title>
       <div class="display-1 mb-2">{{ name }}</div>
     </v-card-title>
@@ -36,30 +31,29 @@
       <v-btn class="ma-2" rounded color="indigo" dark @click="addToCart">
         Add To Cart</v-btn
       >
-      <v-chip color="success" class="mr-2" @click="overlay = !overlay">
+      <v-btn rounded color="info" class="mr-2" @click="dialog = !dialog">
         <v-icon left>mdi-information-outline</v-icon>
         Description
-      </v-chip>
-      <v-dialog
-        v-model="overlay"
-        max-width="500px"
-      >
+      </v-btn>
+      <v-dialog v-model="dialog" max-width="500px">
+        <Description :image="{ image }" />
         <v-card>
           <v-card-title>
-            <span>{{description}}</span>
+            <v-container>
+              <v-img :src="image" :aspect-ratio="16/9"></v-img>
+              <div class="text-center display-1  mt-4">
+                {{ name }}
+              </div>
+              <div class="text-justify title mt-10">
+                {{ description }}
+              </div>
+            </v-container>
+
             <v-spacer></v-spacer>
-            <v-menu
-              bottom
-              left
-            >
-            </v-menu>
+            <v-menu bottom left> </v-menu>
           </v-card-title>
           <v-card-actions>
-            <v-btn
-              color="primary"
-              text
-              @click="overlay = false"
-            >
+            <v-btn color="primary" text @click="dialog = false">
               Close
             </v-btn>
           </v-card-actions>
@@ -69,24 +63,21 @@
   </v-card>
 </template>
 <script>
-import Axios from 'axios';
-// import Description from "./Description";
 export default {
-
-  props : {
-    name : {
+  props: {
+    name: {
       type: String,
     },
-    price : {
+    price: {
       type: String,
     },
-    description : {
+    description: {
       type: String,
     },
-    count : {
+    count: {
       type: String,
     },
-    image : {
+    image: {
       type: String,
     },
   },
@@ -97,12 +88,14 @@ export default {
     return {
       a: this.count,
       minus_display: true,
-      overlay: false,
+      dialog: false,
     };
   },
   methods: {
     addToCart: function() {
+      // let request = `http://localhost:3000/product/${this.a}`
       this.a -= 1;
+
       console.log(this.a);
     },
     removeFromCart: function() {
@@ -111,16 +104,13 @@ export default {
     },
   },
 
-
-    mounted() {
-    console.log()
-    Axios
+  mounted() {
+    console.log();
+    this.$http
       .get("http://localhost:3000/product")
-      .then((response) => (this.info = response ));
-         console.log(this.a);
+      .then((response) => (this.info = response));
+    console.log(this.a);
   },
-
-
 };
 </script>
 <style>

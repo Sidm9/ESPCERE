@@ -17,12 +17,12 @@ export default {
 data: function() {
     return {
       data: [],
-      i: null,
+      // i: null,
       // name: [],
-      description: [],
-      price: [],
-      count: [],
-      image: [],
+      // description: [],
+      // price: [],
+      // count: [],
+      // image: [],
     };
   },
   mounted() {
