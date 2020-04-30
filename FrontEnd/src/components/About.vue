@@ -33,19 +33,11 @@
                     type="text"
                   />
 
-                  <v-text-field
-                    v-model="Price"
-                    label="Price"
-                    name="password"
-                    v-icon="lock"
-                    type="text"
-                  />
+                  <v-text-field v-model="Price" label="Price" type="text" />
 
                   <v-text-field
                     v-model="Description"
                     label="Description"
-                    name="password"
-                    v-icon="lock"
                     type="text"
                   />
                   <ValidationProvider
@@ -57,8 +49,13 @@
                       v-model="Count"
                       label="Count"
                       :error-messages="errors"
-                      name="password"
-                      v-icon="lock"
+                      type="text"
+                    />
+
+                    <v-text-field
+                      v-model="Image"
+                      label="Image"
+                      :error-messages="errors"
                       type="text"
                     />
                   </ValidationProvider>
@@ -83,7 +80,7 @@
       top="true"
       :vertical="mode === 'vertical'"
     >
-      Added To Database
+      Added To Database {{ Image }}
     </v-snackbar>
   </v-app>
 </template>
@@ -106,17 +103,20 @@ export default {
       Price: null,
       Description: "",
       Count: null,
+      Image: "",
     };
   },
 
   methods: {
     send: function() {
+      this.alert = !false;
       this.$http
         .post("http://localhost:3000/create", {
           name: this.Product,
           price: this.Price,
           description: this.Description,
           count: this.Count,
+          image: this.Image,
         })
         .then(function(response) {
           console.log(response);

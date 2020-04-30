@@ -2,7 +2,7 @@
 
   <v-card class="mx-auto mt-4 md-4 mr-4 ml-4 " max-width="450">
     <v-img
-      src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
+      :src= "image"
       :aspect-ratio="16 / 9"
     >
     </v-img>
@@ -17,12 +17,12 @@
         ></v-img>
       </v-avatar>
 
-      <div class="title">4500</div>
+      <div class="title">{{ price }}</div>
       <v-spacer />
 
       <div class="title">Item Count</div>
       <div v-if="a > 0" class="title mx-5">
-        {{ a }}
+        {{ count }}
         <v-icon @click="removeFromCart">
           mdi-minus
         </v-icon>
@@ -46,7 +46,7 @@
       >
         <v-card>
           <v-card-title>
-            <span>Dialog 3</span>
+            <span>{{description}}</span>
             <v-spacer></v-spacer>
             <v-menu
               bottom
@@ -69,6 +69,7 @@
   </v-card>
 </template>
 <script>
+import Axios from 'axios';
 // import Description from "./Description";
 export default {
 
@@ -94,21 +95,32 @@ export default {
   // },
   data: function() {
     return {
-      a: 0,
+      a: this.count,
       minus_display: true,
       overlay: false,
     };
   },
   methods: {
     addToCart: function() {
-      this.a += 1;
-      console.log(this.a);
-    },
-    removeFromCart: function() {
       this.a -= 1;
       console.log(this.a);
     },
+    removeFromCart: function() {
+      this.a += 1;
+      console.log(this.a);
+    },
   },
+
+
+    mounted() {
+    console.log()
+    Axios
+      .get("http://localhost:3000/product")
+      .then((response) => (this.info = response ));
+         console.log(this.a);
+  },
+
+
 };
 </script>
 <style>
