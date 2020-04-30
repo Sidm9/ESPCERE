@@ -5,9 +5,9 @@
       <div class="display-1 mb-2">{{ name }}</div>
     </v-card-title>
     <v-row class="px-4 black--text" align="center">
-      <v-avatar size="20" class="mr-2 ml-3">
+      <v-avatar size="25" class=" ml-3">
         <v-img
-          src="https://image.shutterstock.com/image-illustration/bitcoin-logo-png-vector-transparent-260nw-1654430290.jpg"
+          src="https://imageog.flaticon.com/icons/png/512/25/25473.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF"
           contain
         ></v-img>
       </v-avatar>
@@ -17,19 +17,27 @@
 
       <div class="title">Item Count</div>
       <div v-if="a > 0" class="title mx-5">
-        {{ count }}
-        <v-icon @click="removeFromCart">
+        <v-icon @click="removeFromCart" >
           mdi-minus
         </v-icon>
+        {{ a }}
+        <v-icon @click="addToCart" >
+    
+          mdi-plus
+          
+        </v-icon>
       </div>
-      <div v-else>
-        <span class="title mx-5"> 0 </span>
+      <div v-else class="title mx-5">
+        {{ a }}
+        <v-icon @click="addToCart">
+          mdi-plus
+        </v-icon>
       </div>
     </v-row>
     <v-divider class="mt-1 mx-1"></v-divider>
     <v-card-text>
-      <v-btn class="ma-2" rounded color="indigo" dark @click="addToCart">
-        Add To Cart</v-btn
+      <v-btn class="ma-2" rounded color="green" :disabled="disabled" dark @click="addToCart">
+        Checkout </v-btn
       >
       <v-btn rounded color="info" class="mr-2" @click="dialog = !dialog">
         <v-icon left>mdi-information-outline</v-icon>
@@ -40,8 +48,8 @@
         <v-card>
           <v-card-title>
             <v-container>
-              <v-img :src="image" :aspect-ratio="16/9"></v-img>
-              <div class="text-center display-1  mt-4">
+              <v-img :src="image" :aspect-ratio="16 / 9"></v-img>
+              <div class="text-center display-1 mt-4">
                 {{ name }}
               </div>
               <div class="text-justify title mt-10">
@@ -64,6 +72,9 @@
 </template>
 <script>
 export default {
+  created() {
+    this.$emit;
+  },
   props: {
     name: {
       type: String,
@@ -81,27 +92,31 @@ export default {
       type: String,
     },
   },
-  // components: {
-  //   // Description,
-  // },
+  
   data: function() {
     return {
-      a: this.count,
-      minus_display: true,
+      a: 2,
+      disabled: true,
+      // avaliableCount : count,
+      wait: false,
       dialog: false,
     };
   },
   methods: {
     addToCart: function() {
-      // let request = `http://localhost:3000/product/${this.a}`
-      this.a -= 1;
-
-      console.log(this.a);
-    },
-    removeFromCart: function() {
       this.a += 1;
       console.log(this.a);
+    this.check();
     },
+    removeFromCart: function() {
+      this.a -= 1;
+      console.log(this.a);
+      this.check();
+    },
+   check : function(){
+    this.a>0 ? this.disabled = false : this.disabled = true;
+    console.log("Disable " + this.disabled);
+    }
   },
 
   mounted() {
@@ -110,6 +125,7 @@ export default {
       .get("http://localhost:3000/product")
       .then((response) => (this.info = response));
     console.log(this.a);
+    this.check()
   },
 };
 </script>

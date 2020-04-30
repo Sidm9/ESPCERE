@@ -35,6 +35,8 @@ data: function() {
   },
 
   methods: {
+
+
   //   f: function() {
   //     this.i = Object.keys(this.data).length;
   //     this.getProductName();

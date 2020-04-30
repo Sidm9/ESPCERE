@@ -6,3 +6,6 @@ select * from product;
 DELETE FROM PRODUCT WHERE ID = 4;
 
 TRUNCATE TABLE PRODUCT
+
+ALTER TABLE PRODUCT 
+MODIFY COLUMN Description varchar(200);

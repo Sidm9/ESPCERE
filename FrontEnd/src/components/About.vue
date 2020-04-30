@@ -68,7 +68,6 @@
             </v-card>
           </v-col>
         </v-row>
-        <!-- <h1>{{ Price }}</h1> -->
       </v-container>
     </v-content>
     <v-snackbar
@@ -80,13 +79,12 @@
       top="true"
       :vertical="mode === 'vertical'"
     >
-      Added To Database {{ Image }}
+      Added To Database
     </v-snackbar>
   </v-app>
 </template>
 
 <script>
-// import { extend } from 'vee-validate';
 import { ValidationProvider } from "vee-validate";
 export default {
   props: {
@@ -126,9 +124,5 @@ export default {
         });
     },
   },
-
-  //   extend('positive', value => {
-  //   return value >= 0;
-  // });
 };
 </script>
