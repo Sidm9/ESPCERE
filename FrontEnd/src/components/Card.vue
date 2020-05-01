@@ -17,14 +17,12 @@
 
       <div class="title">Item Count</div>
       <div v-if="a > 0" class="title mx-5">
-        <v-icon @click="removeFromCart" >
+        <v-icon @click="removeFromCart">
           mdi-minus
         </v-icon>
         {{ a }}
-        <v-icon @click="addToCart" >
-    
+        <v-icon @click="addToCart">
           mdi-plus
-          
         </v-icon>
       </div>
       <div v-else class="title mx-5">
@@ -36,9 +34,19 @@
     </v-row>
     <v-divider class="mt-1 mx-1"></v-divider>
     <v-card-text>
-      <v-btn class="ma-2" rounded color="green" :disabled="disabled" dark @click="addToCart">
-        Checkout </v-btn
-      >
+      <router-link to="/Checkout">
+        <v-btn
+          class="ma-2"
+          rounded
+          color="green"
+          @click="checkoutdata"
+          :disabled="disabled"
+          dark
+        >
+          Checkout
+        </v-btn>
+      </router-link>
+      <router-view></router-view>
       <v-btn rounded color="info" class="mr-2" @click="dialog = !dialog">
         <v-icon left>mdi-information-outline</v-icon>
         Description
@@ -56,7 +64,6 @@
                 {{ description }}
               </div>
             </v-container>
-
             <v-spacer></v-spacer>
             <v-menu bottom left> </v-menu>
           </v-card-title>
@@ -92,12 +99,11 @@ export default {
       type: String,
     },
   },
-  
+
   data: function() {
     return {
       a: 2,
       disabled: true,
-      // avaliableCount : count,
       wait: false,
       dialog: false,
     };
@@ -106,17 +112,20 @@ export default {
     addToCart: function() {
       this.a += 1;
       console.log(this.a);
-    this.check();
+      this.check();
     },
     removeFromCart: function() {
       this.a -= 1;
       console.log(this.a);
       this.check();
     },
-   check : function(){
-    this.a>0 ? this.disabled = false : this.disabled = true;
-    console.log("Disable " + this.disabled);
-    }
+    check: function() {
+      this.a > 0 ? (this.disabled = false) : (this.disabled = true);
+      console.log("Disable " + this.disabled);
+    },
+    checkoutdata: function() {
+        this.$emit("Cart Value" , this.a)
+    } 
   },
 
   mounted() {
@@ -125,7 +134,7 @@ export default {
       .get("http://localhost:3000/product")
       .then((response) => (this.info = response));
     console.log(this.a);
-    this.check()
+    this.check();
   },
 };
 </script>

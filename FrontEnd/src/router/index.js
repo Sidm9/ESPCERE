@@ -3,6 +3,8 @@ import VueRouter from 'vue-router';
 import Home from '../components/Main';
 import About from '../components/About';
 import Test from  '../components/Test';
+import Parent from  '../components/Parent';
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -20,6 +22,11 @@ const routes = [
         path: '/test',
         name: "test",
         component: Test,
+    },
+    {
+        path: '/Parent',
+        name: "Parent",
+        component: Parent,
     },
 ]
 const router = new VueRouter({
