@@ -34,7 +34,7 @@
     </v-row>
     <v-divider class="mt-1 mx-1"></v-divider>
     <v-card-text>
-      <router-link to="/Checkout">
+      <router-link to="/Test">
         <v-btn
           class="ma-2"
           rounded
@@ -78,6 +78,7 @@
   </v-card>
 </template>
 <script>
+import { EventBus } from './event-bus.js';
 export default {
   created() {
     this.$emit;
@@ -124,7 +125,7 @@ export default {
       console.log("Disable " + this.disabled);
     },
     checkoutdata: function() {
-        this.$emit("Cart Value" , this.a)
+        EventBus.$emit("i-got-clicked" , this.a)
     } 
   },
 
