@@ -71,6 +71,8 @@ export default {
     value: 198,
   }),
 };
+
+
 </script>
 
 <style>

@@ -17,12 +17,6 @@ export default {
 data: function() {
     return {
       data: [],
-      // i: null,
-      // name: [],
-      // description: [],
-      // price: [],
-      // count: [],
-      // image: [],
     };
   },
   mounted() {
@@ -36,49 +30,6 @@ data: function() {
 
   methods: {
 
-
-  //   f: function() {
-  //     this.i = Object.keys(this.data).length;
-  //     this.getProductName();
-  //     this.getProductPrice();
-  //     this.getProductDescription();
-  //     this.getProductCount();
-  //     this.getProductImage();
-  //   },
-  //   getProductName: function() {
-  //     this.data.forEach((element) => {
-  //       this.name.push(element.Name);
-  //       console.log("Name");
-  //     });
-  //   },
-
-  //   getProductPrice: function() {
-  //     this.data.forEach((element) => {
-  //       this.price.push(element.Price);
-  //       console.log("Price");
-  //     });
-  //   },
-
-  //   getProductDescription: function() {
-  //     this.data.forEach((element) => {
-  //       this.description.push(element.Description);
-  //       console.log("Desc");
-  //     });
-  //   },
-
-  //   getProductCount: function() {
-  //     this.data.forEach((element) => {
-  //       this.count.push(element.Count);
-  //       console.log("Count");
-  //     });
-  //   },
- 
-  //   getProductImage: function() {
-  //     this.data.forEach((element) => {
-  //       this.image.push(element.Image);
-  //       console.log("Image");
-  //     });
-  //   },
   },
 
 

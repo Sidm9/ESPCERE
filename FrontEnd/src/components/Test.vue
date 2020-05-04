@@ -1,16 +1,27 @@
 <template>
-  <h1>wefho</h1>
+<div>
+  <h1> This ->{{ data }} </h1>
+  <p>eroihoerghoer</p>
+</div>
 </template>
 
 <script>
-import { EventBus } from './event-bus.js';
+import { EventBus } from "./event-bus.js";
 export default {
-mounted() {
-EventBus.$on('i-got-clicked', a => {
-  console.log(`Oh, that's nice. It's gotten ${a} clicks! :)`)
-});}
-}
+  data: function() {
+    return {
+      data: this.$store.state.count,
+    };
+  },
+  mounted() {
+    EventBus.$on("i-got-clicked", (a) => {
+      console.log(a);
+      this.data = a;
+       
+    });
 
+  },
+};
 </script>
 
 <style></style>

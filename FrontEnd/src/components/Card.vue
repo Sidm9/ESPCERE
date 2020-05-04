@@ -34,7 +34,7 @@
     </v-row>
     <v-divider class="mt-1 mx-1"></v-divider>
     <v-card-text>
-      <router-link to="/Test">
+      <router-link to="/Checkout">
         <v-btn
           class="ma-2"
           rounded
@@ -105,7 +105,7 @@ export default {
     return {
       a: 2,
       disabled: true,
-      wait: false,
+      cart : null,
       dialog: false,
     };
   },
