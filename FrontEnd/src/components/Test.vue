@@ -1,33 +1,40 @@
 <template>
   <div>
-    <h1>This => {{ count }}</h1>
-    <button @click='doIncrement' >Increment</button>
+    <h1>{{ this.$store.state.inCart }}</h1>
+    <h4>{{ this.$store.state.cartValue }}</h4>
+    <div class=" d-flex justify-lg-center pa-5 flex-wrap  ">
+      <div v-for="n in forSale" :key="n.invId">
+        <Card
+          :name="n.name"
+          :price="n.price"
+          :description="n.Description"
+          :count="n.Count"
+          :image="n.image"
+          :invId="n.invId"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { EventBus } from "./event-bus.js";
-import {mapState} from 'vuex'
+import Card from "./Card";
 export default {
   computed: {
-    ...mapState([
-      'product'
-    ])
-  },
-  methods: {
-    doIncrement: function() {
-      this.$store.commit('increment'),
-      this.$store.dispatch('updateProducts')
+    forSale() {
+      return this.$store.getters.forSale;
+    },
+    inCart() {
+      return this.$store.getters.inCart;
     },
   },
-  mounted() {
-    EventBus.$on("i-got-clicked", (a) => {
-      console.log(a);
-      this.data = a;
-    });
-  
-    this.$store.dispatch('updateProducts')
+  components: {
+    Card,
   },
-
+  methods: {
+    addToCart(invId) {
+      this.$store.dispatch("addToCart", invId);
+    },
+  },
 };
 </script>

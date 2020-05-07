@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../components/Main';
 import About from '../components/About';
 import Test from  '../components/Test';
-import Parent from  '../components/Parent';
+import Checkout from  '../components/Checkout';
 
 Vue.use(VueRouter);
 
@@ -24,9 +24,9 @@ const routes = [
         component: Test,
     },
     {
-        path: '/Parent',
-        name: "Parent",
-        component: Parent,
+        path: '/Checkout',
+        name: "Checkout",
+        component: Checkout,
     },
 ]
 const router = new VueRouter({

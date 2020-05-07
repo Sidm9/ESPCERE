@@ -34,7 +34,7 @@
     </v-row>
     <v-divider class="mt-1 mx-1"></v-divider>
     <v-card-text>
-      <router-link to="/Checkout">
+      <!-- <router-link to="/Checkout"> -->
         <v-btn
           class="ma-2"
           rounded
@@ -45,7 +45,7 @@
         >
           Checkout
         </v-btn>
-      </router-link>
+      <!-- </router-link> -->
       <router-view></router-view>
       <v-btn rounded color="info" class="mr-2" @click="dialog = !dialog">
         <v-icon left>mdi-information-outline</v-icon>
@@ -78,12 +78,15 @@
   </v-card>
 </template>
 <script>
-import { EventBus } from './event-bus.js';
+import { EventBus } from "./event-bus.js";
 export default {
   created() {
     this.$emit;
   },
   props: {
+    invId: {
+      type: String,
+    },
     name: {
       type: String,
     },
@@ -105,7 +108,7 @@ export default {
     return {
       a: 2,
       disabled: true,
-      cart : null,
+      cart: null,
       dialog: false,
     };
   },
@@ -125,8 +128,9 @@ export default {
       console.log("Disable " + this.disabled);
     },
     checkoutdata: function() {
-        EventBus.$emit("i-got-clicked" , this.a)
-    } 
+      EventBus.$emit("i-got-clicked", this.a, this.name);
+      this.$store.dispatch("addToCart", this.invId);
+    },
   },
 
   mounted() {
@@ -139,11 +143,3 @@ export default {
   },
 };
 </script>
-<style>
-body,
-div,
-span,
-a {
-  font-family: "Montserrat", sans-serif;
-}
-</style>
