@@ -5,7 +5,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import Card from "./Card";
@@ -25,14 +24,7 @@ data: function() {
       .get("http://localhost:3000/product")
       .then((response) => (this.data = response.data ));
          console.log(this.data);
-
   },
-
-  methods: {
-
-  },
-
-
 };
 </script>
 

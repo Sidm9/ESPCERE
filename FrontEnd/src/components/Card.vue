@@ -34,7 +34,7 @@
     </v-row>
     <v-divider class="mt-1 mx-1"></v-divider>
     <v-card-text>
-      <!-- <router-link to="/Checkout"> -->
+      <router-link to="/Checkout">
         <v-btn
           class="ma-2"
           rounded
@@ -45,7 +45,7 @@
         >
           Checkout
         </v-btn>
-      <!-- </router-link> -->
+      </router-link>
       <router-view></router-view>
       <v-btn rounded color="info" class="mr-2" @click="dialog = !dialog">
         <v-icon left>mdi-information-outline</v-icon>
@@ -117,11 +117,13 @@ export default {
       this.a += 1;
       console.log(this.a);
       this.check();
+      this.$store.dispatch("addtoCartValue", this.a);
     },
     removeFromCart: function() {
       this.a -= 1;
       console.log(this.a);
       this.check();
+      this.$store.dispatch("addtoCartValue", this.a);
     },
     check: function() {
       this.a > 0 ? (this.disabled = false) : (this.disabled = true);
@@ -132,7 +134,6 @@ export default {
       this.$store.dispatch("addToCart", this.invId);
     },
   },
-
   mounted() {
     console.log();
     this.$http

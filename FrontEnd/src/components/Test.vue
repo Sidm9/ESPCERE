@@ -27,6 +27,9 @@ export default {
     inCart() {
       return this.$store.getters.inCart;
     },
+    cartValue() {
+      return this.$store.getters.cartValue;
+    },
   },
   components: {
     Card,
