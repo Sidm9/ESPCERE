@@ -1,4 +1,4 @@
-# vue-play
+# online-store
 
 ## Project setup
 ```
