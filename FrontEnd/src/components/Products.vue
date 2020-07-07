@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="container my-5">
+    <Nav/>
     <div class="row mb-3">
       <div class="col-md-9">
         <h1>My online store</h1>
@@ -22,6 +23,7 @@
 </template>
 <script>
 import Item from "./item";
+import Nav from "./navbar";
 import ShoppingCart from "./ShoppingCart";
 export default {
   name: "app",
@@ -33,6 +35,21 @@ export default {
   components: {
     Item,
     ShoppingCart,
+    Nav,
   },
 };
 </script>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+#app {
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+}
+.row {
+  border-style: dashed;
+  display: flex;
+  flex-direction: row;
+}
+
+</style>
