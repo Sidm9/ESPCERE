@@ -1,15 +1,12 @@
 <template>
   <div id="app" class="container my-5">
-    <Nav/>
-    <div class="row mb-3">
-      <div class="col-md-9">
+    <Nav />
+
+        <Carousel />
         <h1>My online store</h1>
-      </div>
       <div class="col-md-4">
         <ShoppingCart />
       </div>
-    </div>
-    <div class="row">
       <Item
         v-for="item in forSale"
         :key="item.invId"
@@ -18,13 +15,12 @@
         :image="item.image"
         :price="item.price"
       />
-    </div>
-  </div>
+      </div>
 </template>
 <script>
 import Item from "./item";
 import Nav from "./navbar";
-// import Carousel from './Carousel'
+import Carousel from "./Carousel";
 import ShoppingCart from "./ShoppingCart";
 export default {
   name: "app",
@@ -37,13 +33,15 @@ export default {
     Item,
     ShoppingCart,
     Nav,
-    // Carousel,
+    Carousel,
   },
 };
 </script>
-<style>
+<style >
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
-
+* {
+  overflow: hidden;
+}
 #app {
   font-family: "Montserrat", sans-serif;
   width: 100%;
@@ -53,5 +51,4 @@ export default {
   display: flex;
   flex-direction: row;
 }
-
 </style>

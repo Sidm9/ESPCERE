@@ -11,8 +11,8 @@
     "core-js": "^3.6.5",
     "typeface-montserrat": "^0.0.75",
     "vue": "^2.6.11",
+    "vue-owl-carousel": "^2.0.3",
     "vue-router": "^3.3.4",
-    "vue-slick-carousel": "^1.0.6",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

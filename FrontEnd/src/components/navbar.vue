@@ -15,7 +15,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 * {
   padding: 0px;
   overflow: hidden;
