@@ -24,6 +24,7 @@
 <script>
 import Item from "./item";
 import Nav from "./navbar";
+// import Carousel from './Carousel'
 import ShoppingCart from "./ShoppingCart";
 export default {
   name: "app",
@@ -36,6 +37,7 @@ export default {
     Item,
     ShoppingCart,
     Nav,
+    // Carousel,
   },
 };
 </script>
