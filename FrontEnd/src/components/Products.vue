@@ -1,12 +1,12 @@
 <template>
   <div id="app" class="container my-5">
     <Nav />
-
         <Carousel />
         <h1>My online store</h1>
       <div class="col-md-4">
         <ShoppingCart />
       </div>
+      <div class="row">
       <Item
         v-for="item in forSale"
         :key="item.invId"
@@ -15,6 +15,15 @@
         :image="item.image"
         :price="item.price"
       />
+      <Item
+        v-for="item in forSale"
+        :key="item.invId"
+        :invId="item.invId"
+        :name="item.name"
+        :image="item.image"
+        :price="item.price"
+      />
+      </div>
       </div>
 </template>
 <script>
@@ -27,7 +36,7 @@ export default {
   computed: {
     forSale() {
       return this.$store.getters.forSale;
-    },
+    }, 
   },
   components: {
     Item,
@@ -37,18 +46,24 @@ export default {
   },
 };
 </script>
-<style >
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
-* {
-  overflow: hidden;
-}
+
 #app {
   font-family: "Montserrat", sans-serif;
   width: 100%;
 }
 .row {
   border-style: dashed;
+  justify-content: flex-start;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+}
+* {
+  padding: 0px;
+  overflow: hidden;
+  margin: 0px;
+  font-family: "Montserrat";
 }
 </style>

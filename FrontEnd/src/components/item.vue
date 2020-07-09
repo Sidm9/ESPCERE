@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3">
+<div class="app">
     <div class="card">
       <img :src="image" :alt="name" class="card-image" />
       <div class="card-body">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 </template>
 <script>
 export default {
@@ -33,11 +33,22 @@ div,
 button {
   font-family: "Montserrat", sans-serif;
 }
+* {
+  padding: 0px;
+  overflow: hidden;
+  margin: 0px;
+  font-family: "Montserrat";
+}
+.app {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
 .card {
+  border-style: dashed;
   display: flex;
   flex-direction: row;
-  max-width: 350px;
-  min-width: auto;
+  width: 440px;
   height: auto;
   transition: 0.5s;
   transition-timing-function: ease-in-out;
@@ -48,6 +59,7 @@ button {
 .card-image {
   /* border-style: dashed; */
   border-radius: 10px;
+  width: 50%;
 }
 .card-body {
   /* border-style: double; */
@@ -63,7 +75,8 @@ button {
 }
 .card-title {
   margin-bottom: 5px;
-  font-size: 25px;
+  font-size: 20px;
+  text-overflow: ellipsis;
 }
 .card-text {
   margin-bottom: 10px;
