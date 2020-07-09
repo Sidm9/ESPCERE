@@ -1,5 +1,5 @@
 <template>
-<div class="app">
+  <div class="app">
     <div class="card">
       <img :src="image" :alt="name" class="card-image" />
       <div class="card-body">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
 </template>
 <script>
 export default {
@@ -48,7 +48,8 @@ button {
   border-style: dashed;
   display: flex;
   flex-direction: row;
-  width: 440px;
+  flex-grow: 5;
+  width: 350px;
   height: auto;
   transition: 0.5s;
   transition-timing-function: ease-in-out;
@@ -57,12 +58,10 @@ button {
   /* box-shadow: 1px 1px 5px black; */
 }
 .card-image {
-  /* border-style: dashed; */
   border-radius: 10px;
   width: 50%;
 }
 .card-body {
-  /* border-style: double; */
   margin: 1px;
   display: flex;
   width: 100%;
@@ -106,4 +105,10 @@ button {
     #6269ee
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+/* @media only screen and (max-width: 1500px) {
+  .card {
+    width: 340px;
+  }
+} */
 </style>

@@ -24,11 +24,17 @@ export default {
   data: function() {
     return {
       settings: {
+        items: 4,
         center: false,
         autoheight: true,
         loop: true,
         nav: false,
-        stagePadding: 40,
+        centre: true,
+        responsive: {
+          200: { items: 1 },
+          800: { items: 3 },
+        },
+        stagePadding: 50,
       },
     };
   },
@@ -48,5 +54,10 @@ img {
   object-fit: cover;
   height: 300px;
   border-radius: 20px;
+}
+@media only screen and (max-width: 1200px) {
+  .slide {
+    width: 90%;
+  }
 }
 </style>

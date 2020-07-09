@@ -33,10 +33,9 @@ div{
 }
 .logo {
   background: transparent;
-  margin-left: 30px;
-  width: 200px;
+  text-align: center;
   font-size: 35px;
-  /* text-shadow: 1px 1px 5px #ffffff; */
+  margin: 10px;
   display: flex;
   flex-direction: row;
 }
@@ -85,6 +84,5 @@ div{
     width: 50%;
   }
 }
-@media only and (max-width: 650px) {
-}
+
 </style>

@@ -7,20 +7,20 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-      path: "/",
-      name: 'Products',
-      component: Products,
+    path: "/",
+    name: 'Products',
+    component: Products,
   },
   {
-      path: "/Checkout",
-      name: 'Checkout',
-      component: Checkout,
+    path: "/Checkout",
+    name: 'Checkout',
+    component: Checkout,
   },
   {
     path: "/Carousel",
     name: 'Carousel',
     component: Carousel,
-},
+  },
 ]
 
 const router = new VueRouter({
